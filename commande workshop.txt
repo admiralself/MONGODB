@@ -1,0 +1,898 @@
+Microsoft Windows [Version 10.0.19044.1645]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\admiral>Mongodh
+'Mongodh' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\admiral>Mongodb
+'Mongodb' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\admiral>Mongo
+MongoDB shell version v6.0.0-rc1
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("48952a56-b978-42fc-804e-b93de4c59b21") }
+MongoDB server version: 6.0.0-rc1
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting:
+        2022-04-27T23:46:40.579+02:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+>
+>
+>
+>
+> use ^C
+bye
+
+C:\Users\admiral>Mongo
+MongoDB shell version v6.0.0-rc1
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("91ce0048-2f06-4fbd-a6ee-da14fb26b2c4") }
+MongoDB server version: 6.0.0-rc1
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting:
+        2022-04-27T23:46:40.579+02:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> db
+test
+> use contact
+switched to db contact
+> db
+contact
+> db.createCollection("contactlist")+
+...
+... ^C
+
+> show collections
+> db.createCollection("contactlist")
+{ "ok" : 1 }
+> show collections
+contactlist
+> db.contactlist.insert({
+... Last name: "Ben Lahmer",
+... First name: "Fares",
+... Email: "fares@gmail.com",
+... age: "26"
+... })
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):2:5
+> db.contactlist.insert({
+... id:
+... Last name: "Ben Lahmer",
+... First name: "Fares",
+... Email: "fares@gmail.com",
+... age: "26"
+... })
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):3:5
+> db.contactlist.insertone({
+... Last name: "Ben Lahmer",First name: "Fares",Email: "fares@gmail.com",age: "26"
+... })
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):2:5
+> db.contactlist.insert({
+... Last name: "Ben Lahmer", First name: "Fares", Email: "fares@gmail.com", age: "26"
+... })
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):2:5
+> db.contactlist.insert({
+... Last "name":"Ben Lahmer", "First name":"Fares", "Email":"fares@gmail.com", "age":"26"
+... })
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):2:5
+> db.contactlist.insert({
+... "Last name" : "Ben Lahmer", "First name":"Fares", "Email":"fares@gmail.com", "age":"26"
+... })
+WriteResult({ "nInserted" : 1 })
+> db.contactlist.insert([
+... {"Last name" : "Fatnassi", "First name":"Sarra", "Email":"sarra.f@gmail.com", "age":"40"},
+... {"Last name" : "Ben Yahia", "First name":"Rym", "age":"4"},
+... {"Last name" : "Cherif", "First name":"Sami", "age":"3"}]);
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 3,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+>
+> db.contactlist.find()
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+> db.contactlist.find({"id":ObjectId("626db37caa636e55e361d79b")})
+> db.contactlist.find({"_id":ObjectId("626db37caa636e55e361d79b")})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+> db.contactlist.find({age:{$gt:18})})
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:33
+> db.contactlist.find({age:{$gt:18}})
+> db.contactlist.find({"age":{$gt:18}})
+> db.contactlist.find({"age":{$gt: 18}})
+> db.contactlist.find({"age":{$gt: "18"}})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+
+}
+
+> db.contactlist.find({"Last name": /ah/})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+> db.contactlist.find({$and:[{"age":{$gt: "18"}},{"Last name": /ah/}]})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+> db.contactlist.find({$and:[{"age":{$gt: "18"}},{"First name": /ah/}]})
+> db.contactlist.find({$and:[{"age":{$gt: "18"}},{"Last name": /ah/}]})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+> db.contactlist.find()
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+> db.contactlist.insert({"Last name" : "Kefi", "First name":"Seif", "Email":"kefi@gmail.com", "age":"15"});
+WriteResult({ "nInserted" : 1 })
+> db.contactlist.find()
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+{ "_id" : ObjectId("626dbea9aa636e55e361d7a1"), "Last name" : "Kefi", "First name" : "Seif", "Email" : "kefi@gmail.com", "age" : "15" }
+> db.contactlist.find().pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79d"),
+        "Last name" : "Fatnassi",
+        "First name" : "Sarra",
+        "Email" : "sarra.f@gmail.com",
+        "age" : "40"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi",
+        "First name" : "Seif",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+>
+
+> db.contactlist.find().pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79d"),
+        "Last name" : "Fatnassi",
+        "First name" : "Sarra",
+        "Email" : "sarra.f@gmail.com",
+        "age" : "40"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi",
+        "First name" : "Seif",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+
+> db.contactlist.find({_id: ObjectId("626dbea9aa636e55e361d7a1")}).pretty()
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi",
+        "First name" : "Seif",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+>
+>
+> db.contactlist.update ({_id: ObjectId("626dbea9aa636e55e361d7a1")},{$set :{"First name" : "Kefi"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.contactlist.find({_id: ObjectId("626dbea9aa636e55e361d7a1")}).pretty()
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.update ({_id: ObjectId("626dbea9aa636e55e361d7a1")},{$set :{"Last name" : "Seif"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.contactlist.find({_id: ObjectId("626dbea9aa636e55e361d7a1")}).pretty()
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.update ({_id: ObjectId("626dbea9aa636e55e361d7a1")},{$set :{"Last name" : "Kefi Seif"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+>
+> db.contactlist.find({_id: ObjectId("626dbea9aa636e55e361d7a1")}).pretty()
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({_id: ObjectId("626dbea9aa636e55e361d7a1")}).pretty()
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({_id: ObjectId("626dbea9aa636e55e361d7a1")}).pretty()
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+
+> db.contactlist.find({"age": {$gt:"18"}})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+> db.contactlist.find({"age": {$lt:"5"}})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+{ "_id" : ObjectId("626dbea9aa636e55e361d7a1"), "Last name" : "Kefi Seif", "First name" : "Kefi", "Email" : "kefi@gmail.com", "age" : "15" }
+> db.contactlist.find({"age": {$lte:"5"}})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+{ "_id" : ObjectId("626dbea9aa636e55e361d7a1"), "Last name" : "Kefi Seif", "First name" : "Kefi", "Email" : "kefi@gmail.com", "age" : "15" }
+> db.contactlist.find({"age": {$lt:"5"}})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+{ "_id" : ObjectId("626dbea9aa636e55e361d7a1"), "Last name" : "Kefi Seif", "First name" : "Kefi", "Email" : "kefi@gmail.com", "age" : "15" }
+> db.contactlist.find({"age": {$lte:"5"}})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+{ "_id" : ObjectId("626dbea9aa636e55e361d7a1"), "Last name" : "Kefi Seif", "First name" : "Kefi", "Email" : "kefi@gmail.com", "age" : "15" }
+> db.contactlist.find({"age": {$gt:"18"}})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+> db.contactlist.find({"age": {$gt:18}})
+> db.contactlist.find({"age": {$eq:"5"}})
+> db.contactlist.find({"age": {$eq:"4"}})
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+> db.contactlist.find({"age": {$lt: "5"}})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+{ "_id" : ObjectId("626dbea9aa636e55e361d7a1"), "Last name" : "Kefi Seif", "First name" : "Kefi", "Email" : "kefi@gmail.com", "age" : "15" }
+> db.contactlist.find({age: {$lt: "5"}})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+{ "_id" : ObjectId("626dbea9aa636e55e361d7a1"), "Last name" : "Kefi Seif", "First name" : "Kefi", "Email" : "kefi@gmail.com", "age" : "15" }
+> db.contactlist.find({age: {$lt: "5" }})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+{ "_id" : ObjectId("626dbea9aa636e55e361d7a1"), "Last name" : "Kefi Seif", "First name" : "Kefi", "Email" : "kefi@gmail.com", "age" : "15" }
+> db.contactlist.find({age: {$lt:"5 }})
+uncaught exception: SyntaxError: "" literal not terminated before end of script :
+@(shell):1:37
+> db.contactlist.find({age: {$lt:"5" }})
+{ "_id" : ObjectId("626db37caa636e55e361d79b"), "Last name" : "Ben Lahmer", "First name" : "Fares", "Email" : "fares@gmail.com", "age" : "26" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79d"), "Last name" : "Fatnassi", "First name" : "Sarra", "Email" : "sarra.f@gmail.com", "age" : "40" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79e"), "Last name" : "Ben Yahia", "First name" : "Rym", "age" : "4" }
+{ "_id" : ObjectId("626db4fcaa636e55e361d79f"), "Last name" : "Cherif", "First name" : "Sami", "age" : "3" }
+{ "_id" : ObjectId("626dbea9aa636e55e361d7a1"), "Last name" : "Kefi Seif", "First name" : "Kefi", "Email" : "kefi@gmail.com", "age" : "15" }
+> db.contactlist.find({age: {$lt:"5" }}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79d"),
+        "Last name" : "Fatnassi",
+        "First name" : "Sarra",
+        "Email" : "sarra.f@gmail.com",
+        "age" : "40"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({age: {$lt:"4" }}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({age: {$lte:"4" }}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({age: {$lte:"6" }}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79d"),
+        "Last name" : "Fatnassi",
+        "First name" : "Sarra",
+        "Email" : "sarra.f@gmail.com",
+        "age" : "40"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({age: {$lt:"5"},{$gt:"0"}}).pretty()
+uncaught exception: SyntaxError: expected property name, got '{' :
+@(shell):1:36
+> db.contactlist.find({age: {$lt:"5"}, age:{$gt:"0"}}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79d"),
+        "Last name" : "Fatnassi",
+        "First name" : "Sarra",
+        "Email" : "sarra.f@gmail.com",
+        "age" : "40"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({age: {$lt:"5"}, age:{$ls:"0"}}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "unknown operator: $ls",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.contactlist.find({age:{$lt:"5"}, age:{$ls:"0"}}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "unknown operator: $ls",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.contactlist.find({age:{$lt:"5"}, age:{$ls:"6"}}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "unknown operator: $ls",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.contactlist.find({age:{$lt:"5"}, age:{$lt:"6"}}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79d"),
+        "Last name" : "Fatnassi",
+        "First name" : "Sarra",
+        "Email" : "sarra.f@gmail.com",
+        "age" : "40"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({age:{$lt:"5"}, age:{$lt:"0"}}).pretty()
+> db.contactlist.find({age:{$lt:"5"}, age:{$lt:"5"}}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79d"),
+        "Last name" : "Fatnassi",
+        "First name" : "Sarra",
+        "Email" : "sarra.f@gmail.com",
+        "age" : "40"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({age:{$lt:"5"}, age:{$lt:"0"}}).pretty()
+> db.contactlist.find({age:{$lt:"5"}, age:{$lt:"4"}}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({age:{$lte:"5" }}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79d"),
+        "Last name" : "Fatnassi",
+        "First name" : "Sarra",
+        "Email" : "sarra.f@gmail.com",
+        "age" : "40"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({"age":{$lte:"5" }}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79d"),
+        "Last name" : "Fatnassi",
+        "First name" : "Sarra",
+        "Email" : "sarra.f@gmail.com",
+        "age" : "40"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({"age":{$lt:"5" }}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79d"),
+        "Last name" : "Fatnassi",
+        "First name" : "Sarra",
+        "Email" : "sarra.f@gmail.com",
+        "age" : "40"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({"age":{$lte:"4" }}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({"age":{$lt:"5" }}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79d"),
+        "Last name" : "Fatnassi",
+        "First name" : "Sarra",
+        "Email" : "sarra.f@gmail.com",
+        "age" : "40"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({"age":{$gt:"0" }},{"age":{$lt:"5" }}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "Expression $lt takes exactly 2 arguments. 1 were passed in.",
+        "code" : 16020,
+        "codeName" : "Location16020"
+}
+> db.contactlist.find({"age":{$gt:"0" }},{"age":{$lt:"5" }}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "Expression $lt takes exactly 2 arguments. 1 were passed in.",
+        "code" : 16020,
+        "codeName" : "Location16020"
+}
+> db.contactlist.find({$and: [{"age":{$gt:"0" }},{"age":{$lt:"5" }]}).pretty()
+...
+...
+>
+>
+> db.contactlist.find({"age":{$lt:"5" }}).pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79d"),
+        "Last name" : "Fatnassi",
+        "First name" : "Sarra",
+        "Email" : "sarra.f@gmail.com",
+        "age" : "40"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
+}
+> db.contactlist.find({"age":{$eq:"5" }}).pretty()
+> db.contactlist.find({"age":{$eq:"4" }}).pretty()
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79e"),
+        "Last name" : "Ben Yahia",
+        "First name" : "Rym",
+        "age" : "4"
+}
+> db.contactlist.find({"age":{$eq:"3" }}).pretty()
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79f"),
+        "Last name" : "Cherif",
+        "First name" : "Sami",
+        "age" : "3"
+}
+> db.contactlist.deleteOne({"age":{$eq: "4"}})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.contactlist.deleteOne({"age":{$eq: "3"}})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.contactlist.find().pretty()
+{
+        "_id" : ObjectId("626db37caa636e55e361d79b"),
+        "Last name" : "Ben Lahmer",
+        "First name" : "Fares",
+        "Email" : "fares@gmail.com",
+        "age" : "26"
+}
+{
+        "_id" : ObjectId("626db4fcaa636e55e361d79d"),
+        "Last name" : "Fatnassi",
+        "First name" : "Sarra",
+        "Email" : "sarra.f@gmail.com",
+        "age" : "40"
+}
+{
+        "_id" : ObjectId("626dbea9aa636e55e361d7a1"),
+        "Last name" : "Kefi Seif",
+        "First name" : "Kefi",
+        "Email" : "kefi@gmail.com",
+        "age" : "15"
